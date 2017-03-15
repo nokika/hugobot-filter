@@ -14,6 +14,7 @@ botCommands = ["!spin", "!heist"]
 // Parameters:
 //   variable.text - message text
 //   variable.sender - name of message sender
+//   variable.type - type of message (highlight, action, admin, etc.)
 function Message (node) {
     // Get message text
     var messageSpan = node.getElementsByClassName(chatMessageContent)[0];
@@ -21,6 +22,9 @@ function Message (node) {
 
     // Get message Sender
     this.sender = node.getAttribute(chatMessageSenderClass);
+
+    // Get message type
+    this.type = node.className
 }
 
 
@@ -39,6 +43,11 @@ function Message (node) {
 var filterMessage = function (msgObj) {
     // TODO: match exceptions first (i.e. block user X unless they highlight me)
 
+    // Simple example of allowing message on highlight
+    //   if the message is type chat-line highlight then it included the user's username
+    if (msgObj.type == chatMessageClass2) {
+        return false;
+    }
 
     // TODO: match for more specific commands and messages
     if (msgObj.sender.toLowerCase() == "hugo__bot") {
@@ -47,7 +56,7 @@ var filterMessage = function (msgObj) {
 
     // Example loop through bot commands
     for (i = 0; i < botCommands.length; i++) {
-        if (msgObj.text.toLowerCase() == botCommands[i]) {
+        if (msgObj.text.toLowerCase().includes(botCommands[i])) {
 	    // short circuit
 	    return true;
 	}
