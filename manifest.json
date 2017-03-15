@@ -1,0 +1,20 @@
+{
+  // Required
+  "manifest_version": 2,
+  "name": "hugobot-filter",
+  "version": "0.0.1",
+
+  "description": "An extenison to Hugo_One's twitch channel to remove
+   clutter in the channel chat made by Hugo__Bot",
+
+  "content_scripts": [
+    {
+      "matches": ["https://www.twitch.tv/hugo_one"],
+      "js": ["contentscript.js"],
+      "run_at": "document_end"
+    }
+  ],
+
+  // Optional
+  "author": "Nokika"
+}
