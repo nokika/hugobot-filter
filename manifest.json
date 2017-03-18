@@ -1,11 +1,15 @@
 {
-  // Required
   "manifest_version": 2,
   "name": "hugobot-filter",
   "version": "0.0.1",
 
   "description": "An extenison to Hugo_One's twitch channel to remove
    clutter in the channel chat made by Hugo__Bot",
+
+  "permissions": [
+    "storage",
+    "tabs"
+   ],
 
   "content_scripts": [
     {
@@ -15,6 +19,9 @@
     }
   ],
 
-  // Optional
+  "browser_action": {
+    "default_popup": "popup.html"
+  },
+
   "author": "Nokika"
 }
